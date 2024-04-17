@@ -3,16 +3,17 @@ import tickImage from "../assets/images/double-tick.png";
 import noteImage from "../assets/images/notes.png";
 import plusImage from "../assets/images/plus.png";
 import { useDispatch } from "react-redux";
-import { addNote, clearCompleted, completeAll } from "../redux/todos/todoSlice";
+import { addNewNote, clearCompleted, completeAll } from "../redux/todos/thunks";
+import { nanoid } from "@reduxjs/toolkit";
 
 
 export default function Header() {
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(addNote(input));
+        await dispatch(addNewNote({id: nanoid(), text: input, completed: false, color: null}));
         setInput('');
     }
 
@@ -21,6 +22,7 @@ export default function Header() {
     }
 
     const handleClear = () => {
+        console.log("clearing completed");
         dispatch(clearCompleted());
     }
 

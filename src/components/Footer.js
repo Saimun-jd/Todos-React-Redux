@@ -5,11 +5,11 @@ import { filterByColor, filterByStatus } from '../redux/filters/filterSlice';
 export default function Footer() {
     const dispatch = useDispatch();
 
-    const todos = useSelector((state) => state.todos);
+    const todos = useSelector((state) => state.todos.entities);
     const filters = useSelector((state) => state.filters);
     const { colors } = filters;
 
-    const taskLeft = todos.reduce((total, todo) => total += todo.completed? 0: 1, 0);
+    const taskLeft = todos?.reduce((total, todo) => total += todo.completed? 0: 1, 0);
 
     const handleColorFilter = (color) => {
         if (colors.includes(color)) {

@@ -1,21 +1,22 @@
 import cancelImage from "../assets/images/cancel.png";
 import {useDispatch} from 'react-redux';
-import { changeColor, deleteNote, toggleCompleted } from "../redux/todos/todoSlice";
+import { changeColor, deleteTodo, toggleCompleted } from "../redux/todos/thunks";
 
 export default function Todo({todo}) {
     const dispatch = useDispatch();
     const {id, text, completed, color} = todo;
 
     const handleDelete = (id) => {
-        dispatch(deleteNote(id));
+        dispatch(deleteTodo(id));
     }
 
     const handleCompleted = (id) => {
-        dispatch(toggleCompleted(id));
+        dispatch(toggleCompleted({id, text, completed, color}));
     }
 
     const handleColorChange = (id, color) => {
-        dispatch(changeColor({id, color}));
+        const newTodo = {id, text, completed, color};
+        dispatch(changeColor(newTodo));
     }
 
     return (

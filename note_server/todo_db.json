@@ -1,0 +1,22 @@
+{
+  "todos": [
+    {
+      "id": "7AMK9kO7GwLotj6sTwplU",
+      "text": "fsdffsd",
+      "completed": false,
+      "color": "green"
+    },
+    {
+      "id": "Jx-bnHbojuwOF4jKQvWMc",
+      "text": "sdfsdfsdfsd",
+      "completed": false,
+      "color": "yellow"
+    },
+    {
+      "id": "IxgRGe27QLVuCE6NUWG3A",
+      "text": "sdfsdfsdfsf",
+      "completed": false,
+      "color": "red"
+    }
+  ]
+}

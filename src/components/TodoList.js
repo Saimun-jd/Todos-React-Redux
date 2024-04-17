@@ -1,9 +1,20 @@
+import { useEffect } from "react";
 import Todo from "./Todo";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTodos } from "../redux/todos/thunks";
+import { Spinner } from "./Spinner";
 
 export default function TodoList() {
-    const todos = useSelector(state => state.todos);
+    const dispatch = useDispatch();
+    const todos = useSelector(state => state.todos.entities);
     const filters = useSelector(state => state.filters);
+    const status = useSelector(state => state.todos.status);
+
+      useEffect(() => {
+			if (status === "idle") {
+				dispatch(fetchTodos());
+			}
+		}, [status, dispatch]);
 
     const filterByColor = (todo) => {
         const { colors } = filters;
@@ -25,8 +36,12 @@ export default function TodoList() {
         }
     }
 
-    return (
-        <div className="mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
+    let content;
+    if(status === 'pending') {
+        content = <Spinner text="Loading...."/>;
+    } else {
+        content = (
+             <div className="mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
             {
                 todos
                 .filter(filterByColor)
@@ -36,5 +51,13 @@ export default function TodoList() {
                 ))
             }
         </div>
+        )
+    }
+
+
+    return (
+        <section>
+            {content}
+        </section>
     );
 }
