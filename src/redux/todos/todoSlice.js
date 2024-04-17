@@ -7,10 +7,6 @@ const initState = {
   error: null
 };
 
-
-
-
-
 const todoSlice = createSlice({
   name: 'todos',
   initialState : initState,
@@ -30,7 +26,7 @@ const todoSlice = createSlice({
     builder.addCase(fetchTodos.rejected, (state, action) => {
       state.status = 'failed';
       state.entities = [];
-      state.error = action.payload;
+      state.error = action.payload.messagel;
     })
     builder.addCase(addNewNote.fulfilled, (state, action) => {
       state.error = null;
