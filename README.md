@@ -25,3 +25,12 @@ Please follow the below instructions to run this branch in your machine:
    npm start
    ```
 6. Your app should be available in http://localhost:3000
+
+## Run the backend server
+
+```sh
+cd note_server
+```
+```sh
+npm start
+```
